@@ -1,0 +1,79 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="template/template.xhtml">
+
+    <ui:define name="head">
+        <style type="text/css">
+            .label {
+                width:20%;
+                padding:2px;
+            }
+
+            .value {
+                width:80%;
+                padding:2px;
+            }
+
+            .grid {
+                width:100%;
+            }
+            .alignCenter
+            {
+                text-align:center;
+            }
+            .pdfStyle {
+                background: transparent url(img/application-pdf.png) no-repeat; width:34px; height:22px;
+                padding-left:20px;
+            }
+        </style>
+    </ui:define>
+
+    <ui:define name="content">
+
+        <h:panelGrid columns="1">
+
+            <p:panel style="width:940px">
+
+                <div align="center">
+                    <h:form>
+                        <p:inputText value="#{search.searchTerm}" size="50"/>
+                        <p:spacer width="5" height="10" />
+                        <p:commandButton value="Search" actionListener="#{search.search}" ajax="false" update="searchResultsPanel" icon="ui-icon-search" />
+                    </h:form>
+                </div>
+            </p:panel>
+
+            <p:panel id="searchResultsPanel" rendered="#{not empty search.searchResults}">
+                <h:form>
+                    <p:dataList value="#{search.searchResults}" var="result"  
+                                paginator="true" rows="10"  
+                                paginatorTemplate="{PreviousPageLink} {CurrentPageReport} {NextPageLink} {RowsPerPageDropdown}"  
+                                rowsPerPageTemplate="5,10,15">  
+
+                        <p:column>  
+                            <p:commandLink ajax="false" title="Download">
+                                <f:setPropertyActionListener target="#{search.selectedSearchResult}" value="#{result}" />
+                                <p:graphicImage style="border-style: none" value="img/download.gif" />
+                                <p:fileDownload value="#{search.fileToDownload}" />
+                            </p:commandLink>
+                        </p:column> 
+
+                        <p:column>  
+                            <h:outputText value="#{result.fileName}" title="#{result.path}" style="color:#06C;font-size: 1.3em;"/>
+                            <br/>
+                            <h:outputText escape="false" value="#{result.excerpt}" style="font-size: 1.1em;" /> 
+                        </p:column>  
+                    </p:dataList>  
+                </h:form>
+            </p:panel>
+
+        </h:panelGrid>
+
+    </ui:define>
+
+</ui:composition>
+
+

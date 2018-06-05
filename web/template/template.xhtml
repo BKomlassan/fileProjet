@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <f:view contentType="text/html">
+
+        <h:head>
+            <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+            <link rel="stylesheet" type="text/css" href="style/default.css" media="screen" />
+            <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="screen" />
+
+            <title></title>
+            <ui:insert name="head"></ui:insert>
+        </h:head>
+
+        <h:body>
+
+            <div class="outer-container">
+
+                <div class="inner-container">
+
+                    <div class="ui-widget ui-widget-header">
+
+                        <div align="right" style="padding-right: 10px;font-size: 12px;">
+                            <table cellpadding="10" cellspacing="10">
+                                <tbody>
+                                    <tr>
+                                        <td style="vertical-align: center; height: 17px;">
+                                            <a href="#{request.contextPath}/logout"><img style="border-style: none" src="#{utilisateurController.utilisateurConnecte.login}/pages/img/icons/logout.png"/></a>
+                                        </td>
+                                        <td style="vertical-align: center; height: 17px;">
+                                            <b>
+                                                <c:if test="#{utilisateurController.utilisateurConnecte.login != null}">
+                                                    <h:outputText style="color:#FFF;" value="Utilisateur :  #{utilisateurController.utilisateurConnecte.login}" />
+                                                </c:if>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>                                
+                        </div>
+                    </div>
+
+                    <p:menubar id="menu">
+
+                        <c:if test="#{utilisateurController.utilisateurConnecte.login != null}">
+                            <p:menuitem value="Librairie" url="/faces/library.xhtml" icon="ui-icon-bookmark" />
+                            <p:menuitem value="Recherche" url="/faces/search.jsf" icon="ui-icon-bookmark" />
+                            <p:menuitem value="Profil" url="/faces/profil.xhtml" icon="ui-icon-bookmark" />
+                        </c:if> 
+
+                    </p:menubar>
+
+                    <div class="main">
+
+                        <div class="content">
+                            <ui:insert name="content">
+                            </ui:insert>
+                        </div>
+
+                        <div class="clearer"></div>
+
+                    </div>
+
+                    <br/>
+                    <div class="ui-widget ui-widget-header ui-corner-all">
+                        <span class="left">Powered by <a href="http://primefaces.prime.com.tr">PrimeFaces</a></span>
+                        <span class="right">
+                            <p:ajaxStatus>
+                                <f:facet name="start">
+                                    <h:graphicImage value="img/ajax-loader.gif" />
+                                </f:facet>
+
+                                <f:facet name="complete">
+                                    Status
+                                </f:facet>
+                            </p:ajaxStatus>
+                        </span>
+
+                        <div class="clearer"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </h:body>
+    </f:view>
+
+</html>

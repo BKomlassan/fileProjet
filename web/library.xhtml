@@ -1,0 +1,250 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+
+                template="template/webtemplates.xhtml">
+
+    <ui:define name="content">
+
+        <div class="content-connect">
+            <div class="container home-connect">
+                <p:menubar id="menu">
+
+                    <c:if test="#{utilisateurController.utilisateurConnecte.login != null}">
+
+                        <p:menuitem value="#{library.lieu}" url="/faces/library.xhtml" class="glyphicon home-connect"/>
+
+
+
+                    </c:if> 
+
+                </p:menubar>
+
+                <div class="main">
+
+                    <div class="content">
+                        <h:panelGrid id="twoSideGrid" columns="2" columnClasses="alignTop, alignTop" cellpadding="0" cellspacing="0"  style="width:1100px; margin: 0 auto;"  >
+
+                            <p:panel id="treePanel"  style="width:400px;  margin: 0px; padding: 0px; top:0 ; position: relative;" >
+
+                                <h:form id = "form" styleClass="treeForm">
+                                    <p:contextMenu id="folderMenu" for="explorerTree" style="width:250px;">
+                                        <p:menuitem value="Creer un dossier"  onclick="PF('createNewFolder').show();" icon="ui-icon-contact" />
+                                        <p:menuitem value="Renommer le dossier"  onclick="PF('renameFolder').show();" icon="ui-icon-contact" />
+                                        <p:menuitem value="Upload un fichier"  onclick="PF('uploadFile').show();" icon="ui-icon-arrowstop-1-n" /> 
+                                        <p:menuitem value="Supprimer un dossier"  onclick="PF('confirmation').show();" icon="ui-icon-trash" />
+                                        <p:menuitem value="Raffraichir" actionListener="PF('refresh').show();"  icon="ui-icon-refresh" />                                
+                                    </p:contextMenu>
+                                    <p:growl id="messages" showDetail="true" />
+                                    <p:tree 
+                                        id="explorerTree" 
+                                        value="#{library.root}" 
+                                        var="document" 
+                                        selectionMode="single" 
+                                        selection="#{library.selectedNode}"
+                                        style="width:380px;  margin: 0px; padding: 0px; top:0 ; position: relative;">
+
+                                        <p:ajax event="expand" update=":form:messages" listener="#{library.onNodeExpand}" />
+                                        <p:ajax event="collapse" update=":form:messages" listener="#{library.onNodeCollapse}" />
+                                        <p:ajax event="select" update=":form:messages" listener="#{library.onNodeSelect}" />
+                                        <p:ajax event="unselect" update=":form:messages" listener="#{library.onNodeUnselect}" />
+
+                                        <p:treeNode expandedIcon="ui-icon-folder-open" collapsedIcon="ui-icon-folder-collapsed">
+                                            <h:outputText value="#{document.name}"/>
+                                        </p:treeNode>
+                                        <p:treeNode type="document" icon="ui-icon-document">
+                                            <h:outputText value="#{document.name}" />
+                                        </p:treeNode>
+                                        <p:treeNode type="picture" icon="ui-icon-image">
+                                            <h:outputText value="#{document.name}" />
+                                        </p:treeNode>
+                                        <p:treeNode type="mp3" icon="ui-icon-video">
+                                            <h:outputText value="#{document.name}" />
+                                        </p:treeNode>
+                                    </p:tree>
+
+
+
+                                </h:form>
+
+                            </p:panel>
+
+                            <p:panel id="propPanel" style="width:700px; margin: 0px; padding: 0px;">
+
+                                <h:form id = "form1">
+
+                                    <p:contextMenu id="fileMenu" for="fileExplorer">
+                                        <p:menuitem value="Télécharger"  icon="ui-icon-arrowthickstop-1-s" ajax="false" >
+
+                                        </p:menuitem>
+                                        <p:menuitem value="Renommer"  icon="ui-icon-newwin"/>
+                                        <p:menuitem value="Supprimer"   icon="ui-icon-trash" />
+
+                                    </p:contextMenu>
+
+                                    <p:scrollPanel style="height:300px">  
+                                        <p:dataTable id="fileExplorer" 
+
+                                                     value="#{documentService.filesModel}"
+                                                     var="file"  
+                                                     rowKey="#{file.name}"
+                                                     selectionMode="multiple"
+                                                     emptyMessage="This folder is empty"
+                                                     rowIndexVar="rowIndex">
+
+
+                                            <p:column style="width:308px" >
+                                                <f:facet name="header">
+                                                    Name
+                                                </f:facet>
+                                                <span >  <h:graphicImage url="img/filetypes/application/#{file.type}.png"/> #{file.name} </span>
+                                            </p:column>
+
+                                            <p:column style="width:155px" >
+                                                <f:facet name="header">
+                                                    Size
+                                                </f:facet>
+                                                <h:outputText value="#{file.size}"  escape="false">
+
+                                                </h:outputText>
+
+                                            </p:column>
+
+                                            <p:column style="width:116px" >
+                                                <f:facet name="header">
+                                                    Type
+                                                </f:facet>
+                                                <h:outputText value="#{file.type}" escape="false">
+
+                                                </h:outputText>
+                                            </p:column>
+                                        </p:dataTable>
+
+
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                    </p:scrollPanel>
+
+
+                                </h:form>
+
+                                <br/>
+                            </p:panel>
+
+                        </h:panelGrid>
+
+                        <p:dialog id="createFolderDialog" header="Create new folder" widgetVar="createNewFolder" modal="true" height="70" width="400" resizable="false">
+                            <h:form>
+                                <h:panelGrid columns="2" cellpadding="15">
+                                    <h:outputText value="Folder name: " />
+                                    <p:inputText id="newFolderInput" value="#{library.folderName}" size="30" required="true" 
+                                                 requiredMessage="Veuillez entrer le nom du dossier"/>
+                                </h:panelGrid>
+                                <p:commandButton value="Submit" actionListener="#{library.createFolder()}"  onsuccess="createNewFolder.hide()" />
+                            </h:form>
+                        </p:dialog>
+
+
+                        <p:dialog id="renameFolderDialog" header="Rename folder" widgetVar="renameFolder" modal="true" height="70" width="400" resizable="false">
+                            <h:form>
+                                <h:panelGrid columns="2" cellpadding="15">
+                                    <h:outputText value="Folder new name: " />
+                                    <p:inputText id="newFolderInput" value="#{library.folderNewName}" size="30" required="true" 
+                                                 requiredMessage="Veuillez entrer le nouveau nom du dossier"/>
+                                </h:panelGrid>
+                                <p:commandButton value="Submit" actionListener="#{library.renameFolder()}"  onsuccess="renameFolder.hide()" />
+                            </h:form>
+                        </p:dialog>
+
+
+                        <p:growl id="FolderOpMsg" life="2000" showDetail="true" />
+
+                        <p:dialog id="fileUploadDg" header="Upload new files" widgetVar="uploadFile" modal="true" height="400" width="700" maximizable="true" >
+                            <h:form enctype="multipart/form-data">
+                                <h:outputText value="Choose the files to upload or drag them to the box below (supported browsers only). " /><br/>
+                                <p:fileUpload fileUploadListener="#{library.upload}"  
+                                              mode="advanced" multiple="true"  
+                                              sizeLimit="50000000"
+                                              allowTypes="/(\.|\/)(doc|docx|xls|xml|xlsx|ppt|pptx|pdf|mpp|html|xhtml|wsdl|dot|dotx|rtf|wps|xps|txt|jpg|jpeg|xml|png|gif|css|properties|vsd|odt|ott|stw|sxw|odg|odp|otp)$/" style="height:inherit;width:inherit;" />
+                            </h:form>
+                        </p:dialog>
+
+                        <p:dialog id="fileUpdate" header="Update an existing file" widgetVar="fileUpdate" modal="true" height="400" width="600" maximizable="true">
+                            <h:form>
+                                <h:outputText value="Choose the files to upload or drag them to the box below (supported browsers only). " />
+                                <p:fileUpload fileUploadListener="#{fileUploadController.upload(event)}"  
+                                              mode="advanced" multiple="false"
+                                              auto="true"  
+                                              sizeLimit="50000000"
+                                              allowTypes="/(\.|\/)(doc|docx|xls|xlsx|ppt|pptx|pdf|mpp|html|xhtml|wsdl|dot|dotx|rtf|wps|xps|txt|jpg|jpeg|xml|png|gif|css|properties|vsd|odt|ott|stw|sxw|odg|odp|otp)$/" style="height:inherit;width:inherit;" />
+                            </h:form>
+                            <h:form>
+                                <br/>
+                                <h:outputText value="Update message: " />
+                                <p:inputTextarea id="fileUpdateInput" style="width:565px;height:100px;"  immediate="false" />
+                                <p:commandButton value="Update" actionListener="#{library.updateFile}" />
+                            </h:form>
+                        </p:dialog>
+
+                        <p:confirmDialog id="folderDeleteDialog" message="Delete the selected folder and all its files ?" header="Confirm deletion" severity="alert" widgetVar="confirmation">
+                            <h:form>
+                                <p:commandButton value="Yes" oncomplete="confirmation.hide()"
+                                                 actionListener="#{library.deleteFolder}" />
+                                <p:commandButton value="No" onclick="confirmation.hide()" type="button" />
+                            </h:form>
+                        </p:confirmDialog>
+
+                        <p:confirmDialog id="fileDeleteDialog" message="Delete the selected file and its history ?" header="Confirm file deletion" severity="alert" widgetVar="fileDeleteDlg">
+                            <h:form>
+                                <p:commandButton value="Yes" oncomplete="fileDeleteDlg.hide()" actionListener="#{library.deleteFolder()}" />
+                                <p:commandButton value="No" onclick="fileDeleteDlg.hide()" type="button" />
+                            </h:form>
+                        </p:confirmDialog>
+
+                        <p:confirmDialog id="refreshDialog" message="Delete the selected file and its history ?" header="Confirm file deletion" severity="alert" widgetVar="refresh">
+                            <h:form>
+                                <p:commandButton value="Yes" oncomplete="refresh.hide()" actionListener="#{library.refresh()}" />
+                                <p:commandButton value="No" onclick="refresh.hide()" type="button" />
+                            </h:form>
+                        </p:confirmDialog>
+                    </div>
+
+                    <div class="clearer"></div>
+
+                </div>
+
+                <br/>
+                <div class="ui-widget ui-widget-header ui-corner-all">
+                    <span class="left">SupFile order by          <a href="https://www.supinfo.com/en/troyes/">SUPINFO</a></span>
+                    <span class="right">
+                        <p:ajaxStatus>
+                            <f:facet name="start">
+                                <h:graphicImage value="img/ajax-loader.gif" />
+                            </f:facet>
+
+                            <f:facet name="complete">
+                                2018
+                            </f:facet>
+                        </p:ajaxStatus>
+                    </span>
+
+                    <div class="clearer"></div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+    </ui:define>
+
+</ui:composition>
+
+

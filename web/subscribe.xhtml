@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/template/webtemplates.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="content">
+        <div class="contentHome">
+            <br/> <br/> <br/> 
+            <div class="container wow animated bounceInUp">
+                <h:form class="formregister well">
+
+                    <legend>Créer votre compte</legend>
+                    <div class="form-group">
+
+                        <h:outputLabel value="Nom  :" for="Nom" /> 
+                        <h:inputText id="Nom" class="form-control" value="#{utilisateurController.user.nom}" required="true" 
+                                     requiredMessage="Veuillez entrer votre nom" />
+                        <h:message for="nom" class="messageError" />
+                    </div>
+                    <div class="form-group">
+
+                        <h:outputLabel  value="Prenom  :" for="Prenom" />
+                        <h:inputText id="prenom" class="form-control" value="#{utilisateurController.user.prenom}" required="true" 
+                                     requiredMessage="Veuillez entrer votre prenom" />
+                        <h:message for="prenom" class="messageError" />
+                    </div>
+                    <div class="form-group">
+
+                        <h:outputLabel  value="Email  :" for="Email" />
+                        <h:inputText id="Email" class="form-control" value="#{utilisateurController.user.email}" required="true" 
+                                     requiredMessage="Veuillez entrer votre Email" />
+                        <h:message for="Email" class="messageError" />
+                    </div>
+                    <div class="form-group">
+
+                        <h:outputLabel  value="Code Postal  :" for="codePostal" />
+                        <h:inputText id="codePostal" class="form-control" value="#{utilisateurController.user.codePostal}" required="true" 
+                                     requiredMessage="Veuillez entrer votre Code postal" />
+                        <h:message for="codePostal" class="messageError" />
+                    </div>
+
+                    <div class="form-group">
+
+                        <h:outputLabel  value="Nom d'utilisateur  :" for="login" />
+                        <h:inputText id="login" class="form-control" value="#{utilisateurController.user.login}" required="true" 
+                                     requiredMessage="Veuillez entrer votre login" />
+                        <h:message for="login" class="messageError" />
+                    </div>
+
+                    <div class="form-group">
+
+                        <h:outputLabel  value="Mot de passe  :" for="password" />
+                        <h:inputSecret id="password" class="form-control" value="#{utilisateurController.user.motDePasse}" required="true" 
+                                       requiredMessage="Veuillez entrer votre mot de passe" />
+                        <h:message for="password" class="messageError" />
+                    </div>
+
+                    <h:commandButton class="buttonPerso" value="Login" action="#{utilisateurController.enreg()}"/>  
+
+                </h:form>
+            </div>
+            <br/><br/><br/>
+        </div>
+
+       
+
+
+    </ui:define>
+
+</ui:composition>
+

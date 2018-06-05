@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <title><ui:insert name="title" /></title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+            <link rel="stylesheet" type="text/css" href="style/default.css" media="screen" />
+            <link href="css/bootstrap.css" rel="stylesheet" />
+            <link href="css/styleperso.css" rel="stylesheet" />  
+            <link href="css/bootstrap-social.css" rel="stylesheet" />  
+            <link rel="stylesheet" href="css/animate.css"/>
+
+            <ui:insert name="head" />
+
+        </h:head>
+
+        <h:body>
+            <div class="resetbar"></div>
+            <div class="espacelogo">
+                <div class="container logo">
+                    <a href="#"><img
+                            src="images/supfileLogo.png"
+                            alt="logo" /></a>
+                </div>
+            </div>
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container">
+
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only"></span> <span class="icon-bar"></span> <span
+                                class="icon-bar"></span> <span class="icon-bar"></span>
+                        </button>
+                    </div>
+
+
+                    <div class="collapse navbar-collapse mynavbar"
+                         id="bs-example-navbar-collapse-1">
+                        <h:form>
+
+
+                            <ul class="nav navbar-nav ">
+                                <c:if test="#{utilisateurController.utilisateurConnecte.login == null}">
+                                    <li><h:outputLink value="faces/home.xhtml" class="glyphicon glyphicon-home">
+                                            <h:outputText value=" Home" />
+                                        </h:outputLink></li>
+                                    <li><h:outputLink value="faces/login.xhtml" class="glyphicon glyphicon-user">
+                                            <h:outputText value=" Login" />
+                                        </h:outputLink></li>
+                                    <li><h:outputLink value="faces/subscribe.xhtml" class="glyphicon glyphicon-registration-mark">
+                                            <h:outputText value=" Register" />
+                                        </h:outputLink></li>
+                                </c:if>
+
+                                <c:if test="#{utilisateurController.utilisateurConnecte.login != null}">
+
+                                    <li><h:outputLink value="faces/library.xhtml" >
+                                            <h:outputText value="Bibliothèque" />
+                                        </h:outputLink></li>
+
+
+                                    <li class="dropdown"><a href="#" class="dropdown-toggle"
+                                                            data-toggle="dropdown"> <h:outputText value="#{utilisateurController.utilisateurConnecte.login}"></h:outputText>
+                                            <span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><h:outputLink value="faces/profil.xhtml" class="glyphicon glyphicon-user">
+                                                    <h:outputText value=" Profile" />
+                                                </h:outputLink></li>
+                                            <li>
+
+                                                <h:commandLink  class="glyphicon glyphicon-log-out" action="#{utilisateurController.deconnexion()}">
+                                                    <h:outputText value=" Deconnexion" />
+                                                </h:commandLink>
+                                            </li>
+                                        </ul></li>
+                                </c:if>
+
+                            </ul>
+                        </h:form>
+                    </div>
+                </div>
+            </nav>
+
+            <ui:insert name="content" />
+
+            <script src="wow.min.js"></script>
+
+            <script>
+                window.dynamicNumbersBound = false;
+                var wow = new WOW();
+                WOW.prototype.show = function (box) {
+                    wow.applyStyle(box);
+
+                    return box.className = "" + box.className + " " + wow.config.animateClass;
+                };
+                wow.init();
+
+
+            </script>
+        </h:body>
+
+    </f:view>
+</html>

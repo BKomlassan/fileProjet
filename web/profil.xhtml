@@ -1,0 +1,75 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/webtemplates.xhtml">
+
+    <ui:define name="content">
+
+        <div class="content-connect">
+            <div class="container">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="containerphoto">
+                        <img src="images/user.png" class="img-responsive photoprofil" />
+                        <div class="profileinformation well">
+                            <span class="desc_idbooster"><h:outputText value="#{utilisateurController.utilisateurConnecte.nom}" /></span> <br />
+                            <span class="desc_firstname"><h:outputText value="#{utilisateurController.utilisateurConnecte.prenom}" /></span> <br />
+                            <span class="desc_lastname"><h:outputText value="#{utilisateurController.utilisateurConnecte.email}" /></span> <br />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <div class="well">
+                        <h:form class="formregister relative">
+                            <legend>Mettre à jour vos informations</legend>
+                            <div class="form-group">
+                                <label for="nom">Nom : </label> 
+                                <h:inputText id="Nom" class="form-control" value="#{utilisateurController.utilisateurConnecte.nom}" required="true" 
+                                             requiredMessage="Veuillez entrer votre Nom" />
+                                <h:message for="Nom" class="messageError" />
+                            </div>
+                            <div class="form-group">
+                                <label for="Prenom">Prenom : </label> 
+                                <h:inputText id="Prenom" class="form-control" value="#{utilisateurController.utilisateurConnecte.prenom}" required="true" 
+                                             requiredMessage="Veuillez entrer votre prenom" />
+                                <h:message for="prenom" class="messageError" />
+                            </div>
+                            <div class="form-group">
+                                <label for="Email">Email : </label> 
+                                <h:inputText id="email" class="form-control" value="#{utilisateurController.utilisateurConnecte.email}" required="true" 
+                                             requiredMessage="Veuillez entrer votre email" />
+                                <h:message for="email" class="messageError" />
+                            </div>
+                            <div class="form-group">
+                                <label for="codePostal">Code postal : </label> 
+                                <h:inputText id="codePostal" class="form-control" value="#{utilisateurController.utilisateurConnecte.codePostal}" required="true" 
+                                             requiredMessage="Veuillez entrer votre Code Postale" />
+                                <h:message for="codePostal" class="messageError" />
+                            </div>
+                            <div class="form-group">
+                                <label for="login">Nom d'utilisateur : </label> 
+                                <h:inputText id="login" class="form-control" value="#{utilisateurController.utilisateurConnecte.login}" required="true" 
+                                             requiredMessage="Veuillez entrer votre Nom d'utilisateur" />
+                                <h:message for="login" class="messageError" />
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Mot de passe : </label> 
+                                <h:inputSecret id="password" class="form-control" value="#{utilisateurController.utilisateurConnecte.motDePasse}" required="true" 
+                                               requiredMessage="Veuillez entrer votre mot de passe " />
+                                <h:message for="password" class="messageError" />
+                            </div>
+
+                            <h:commandButton class="buttonPerso" value="Mettre à jour" action="#{utilisateurController.update()}"/>  
+
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ui:define>
+
+</ui:composition>
+

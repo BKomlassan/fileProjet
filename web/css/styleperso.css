@@ -1,0 +1,389 @@
+@font-face {
+    font-family: 'open_sansregular';
+    src: url('../fonts/opensans-regular.eot');
+    src: url('../fonts/opensans-regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/opensans-regular.woff2') format('woff2'),
+        url('../fonts/opensans-regular.woff') format('woff'),
+        url('../fonts/opensans-regular.ttf') format('truetype'),
+        url('../fonts/opensans-regular.svg#open_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'bebas_neueregular';
+    src: url('../fonts/bebasneue.eot');
+    src: url('../fonts/bebasneue.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/bebasneue.woff2') format('woff2'),
+        url('../fonts/bebasneue.woff') format('woff'),
+        url('../fonts/bebasneue.ttf') format('truetype'),
+        url('../fonts/bebasneue.svg#bebas_neueregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+.logo {
+    text-align:center;
+}
+
+
+.logo img {
+    margin-top:10px;
+}
+
+.logoecole {
+    width:300px;
+}
+
+.nothing {
+    height:20px;
+}
+
+
+.espacelogo {
+    border-bottom: #2a59a8;
+    height:130px;
+    background:url('../images/whitediamond.png') repeat;
+}
+
+.espacelogo a:hover {
+    opacity:0.7;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition: all 300ms ease-in-out;
+    -ms-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+
+}
+
+.buttonPerso {
+    height:40px;
+    margin-top:15px;
+    background: #28a4c9;
+    border:2px solid #333333;
+    color:#f6f6f6;
+    width:100%;
+    font-family:'verdana';
+    font-size:24px;
+    line-height:35px;
+}
+
+.buttonPerso:hover {
+    border:2px solid #28a4c9;
+    color:#28a4c9;
+    background:#f6f6f6;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition: all 300ms ease-in-out;
+    -ms-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+}
+
+.contentHome {
+    background:url('../images/home.jpg') fixed;
+    background-size:cover;
+    position:relative;
+    background-position: center;
+}
+
+.content-connect {
+    background:url('../images/connect.jpg') fixed;
+    background-size:cover;
+    position:relative;
+    background-position: center;
+    padding: 80px 0 80px 0;
+}
+.home-connect{
+    padding: 30px;
+    background:url('../images/whitediamond.png') repeat;
+
+}
+
+.photoprofil {
+	width:100%;
+        height: 340px;
+	border-top:3px solid #2a59a8;
+	border-bottom:3px solid #2a59a8;
+    background:url('../images/whitediamond.png') repeat;
+}
+
+.containerphoto span {
+	font-family:'bebas_neueregular';
+	font-size:20px;
+}
+
+.formeditprofile label {
+    font-family:'bebas_neueregular';
+    font-size:26px;
+    color:#333333;
+    letter-spacing:1px;
+}
+
+.formeditprofile legend {
+    font-family:'bebas_neueregular';
+    font-size:24px;
+    color:#333333;
+    letter-spacing:1px;
+    font-weight:bold;
+}
+
+.formeditprofile input, .formeditprofile select {
+    font-family:'open_sansregular';
+    font-size:14px;
+}
+
+
+.formregister {
+    margin-top:20px;
+    background:url('../images/whitediamond.png') repeat;
+    width: 600px;
+    margin:auto;
+}
+.formregister label {
+    font-family:'bebas_neueregular';
+    font-size:26px;
+    color:#333333;
+    letter-spacing:1px;
+    text-align: left;
+}
+
+.formregister legend {
+    font-family:'bebas_neueregular';
+    text-align:center;
+    font-size:30px;
+    color:#2a59a8;
+    letter-spacing:1px;
+    font-weight:bold;
+}
+
+.formregister input, .formregisterprofile select {
+    font-family:'open_sansregular';
+    font-size:14px;
+}
+
+.formconnect {
+    margin-top:100px;
+}
+
+.formconnect legend {
+    font-family:'bebas_neueregular';
+    text-align:center;
+    font-size:30px;
+    color:#2a59a8;
+    letter-spacing:1px;
+    font-weight:bold;
+}
+
+.formconnect label {
+    font-family:'bebas_neueregular';
+    font-size:20px;
+    color:#333333;
+    letter-spacing:1px;	
+}
+
+.formconnect input {
+    font-family:'open_sansregular';
+    font-size:14px;
+}
+
+.relative{
+    position: relative;
+}
+
+.navigation_principale ul {
+    text-align:center;
+    display:block;
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+.navigation_principale ul li {
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.navigation_principale {
+    margin-left:auto;
+    margin-right:auto;
+    width:100%;
+
+}
+
+.navigation {
+    width:100%;
+    margin-left:auto;
+}
+.navigation_principale ul a {
+    padding-left:10px;
+    padding-right:10px;
+    float:left;
+    width:100px;
+    border:1px solid;
+    padding-bottom:10px;
+    padding-top:10px;
+    display:block;
+}
+
+.simplebloc {
+    margin-top:20px;
+    background:url('../images/whitediamond.png') repeat;
+    border-top:3px solid #2a59a8;
+}
+
+.simplebloc h1 {
+    font-family:'bebas_neueregular';
+    text-align:center;
+    color:#2a59a8;
+}
+
+.simplebloc .descpres {
+    margin-top:20px;
+    line-height:35px;
+    font-family: 'open_sansregular';
+}
+
+.simplebloc .descpres a, .bloc .descpres a {
+    font-weight:bold;
+    color:#2a59a8;
+}
+
+.simplebloc .descpres a:hover, .bloc .descpres a:hover {
+    text-decoration:none;
+    color:#000000;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition: all 300ms ease-in-out;
+    -ms-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+}
+
+.linkbackpack {
+    padding-top:0;
+    padding-bottom:0;
+    margin-top:0;
+    margin-bottom:0;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; // remove the gap so it doesn't close
+}
+
+.navbar {
+    margin-bottom:0px;
+}
+.resetbar {
+    background-color:#2a59a8;
+    height:5px;
+    width:100%;
+}
+
+.bloc {
+    margin-top:35px;
+    border-top:3px solid #2a59a8;
+    border-bottom:3px solid #2a59a8;
+    background:url('../img/whitediamond.png') repeat;
+}
+
+.bloc h1 {
+    font-family:'bebas_neueregular';
+    font-size:40px;
+    color:#2a59a8;
+}
+
+.mynavbar {
+    text-align:center;
+}
+.mynavbar .nav {
+    float:none;
+}
+.mynavbar .nav li {
+    display:inline-block;
+    float:none;
+    margin:0 3px;
+    vertical-align:middle;
+    text-transform:uppercase;
+    font-family: 'open_sansregular';
+}
+.mynavbar .nav li a {
+    border-bottom:2px solid;
+    font-weight:bold;
+    background:#fff;
+    color:#2a59a8;
+}
+
+.mynavbar .nav .dropdown-menu li a {
+    border:none;
+}
+
+.mynavbar .nav .dropdown-menu li a:hover {
+    border:none;
+    background:none;
+    color:#333333;
+}
+
+.mynavbar .nav li a:hover {
+    border-bottom:2px solid #444444;
+    background:#2a59a8;
+    color:#f6f6f6;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition: all 300ms ease-in-out;
+    -ms-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+}
+
+.mynavbar .nav li.mylogo a, .mynavbar .nav li.mylogo a:hover {
+    background:transparent;
+    max-width:150px;
+}
+
+.mynavbar .nav li.mylogo a img {
+    width:100%;
+    height:auto;
+    vertical-align:middle;
+    display:inline-block;
+}
+.navbar-brand {
+    display:none
+}
+
+.formeditprofile .nostyle {
+    font-family:'open_sansregular';
+    font-size:14px;
+}
+
+@media screen and (max-width:768px) {
+
+    .navbar-brand {
+        display:inline
+    }
+    .mynavbar .nav li {
+        display:block;
+        margin:0
+    }
+    .mynavbar .nav li a {
+        border-radius:0;
+        display:block;
+        border-bottom:1px solid #fff
+    }
+
+    .dropdown:hover .dropdown-menu {
+        width:100%;
+        text-align:center;
+    }
+
+    .backtotrips {
+        width:100%;
+    }
+
+    .proceed {
+        width:100%;	
+    }
+
+}
+
+
+
